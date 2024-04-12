@@ -1,0 +1,12 @@
+#!/bin/bash
+source /cvmfs/des.opensciencegrid.org/eeups/startupcachejob31i.sh
+
+input="tiles_n.txt"
+while IFS= read -r line
+do
+  echo "$line"
+  FILEPATH="/data/des81.b/data/stronglens/Y6_CUTOUT_IMAGES/$line"
+  if [[ -f "$FILEPATH" ]]; then
+    ifdh cp -D $FILEPATH /pnfs/des/persistent/sgonzal/vit_multiclass/Y6_tiles
+  fi
+done < "$input"
